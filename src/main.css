@@ -154,6 +154,19 @@
         background: rgb(255 255 255 / 0.06);
         letter-spacing: 0.02em;
     }
+
+    .project-tag {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 4px;
+        border: 1px solid rgb(255 255 255 / 0.2);
+        padding: 0.26rem 0.58rem;
+        font-size: 0.72rem;
+        line-height: 1;
+        color: rgb(229 229 229);
+        background: rgb(255 255 255 / 0.04);
+        letter-spacing: 0.02em;
+    }
 }
 
 @keyframes page-unblur {

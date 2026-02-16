@@ -17,7 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" crossorigin href="/assets/index-COIfMFeE.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CxnzaZjk.css">
   </head>
   <body>
     <main class="px-5 py-10 mx-auto max-w-4xl md:px-10 md:py-16">
@@ -84,6 +84,11 @@
               Built AI-powered analysis and scoring of projects and tweets, plus
               some development and design work.
             </p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="project-tag">AI</span>
+              <span class="project-tag">Bun/Node.js</span>
+              <span class="project-tag">React</span>
+            </div>
           </article>
 
           <article class="reveal" style="--reveal-delay: 160ms">
@@ -100,8 +105,39 @@
               >
             </h3>
             <p class="mt-3 text-neutral-300">
-              My own AI tool for creating video timecodes in seconds.
+              My own little startup. It's an AI tool for creating video timestamps in seconds.
             </p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="project-tag">Vue</span>
+              <span class="project-tag">Bun</span>
+              <span class="project-tag">Elysia</span>
+              <span class="project-tag">AI SDK</span>
+            </div>
+          </article>
+
+          <article class="reveal" style="--reveal-delay: 180ms">
+            <p
+              class="text-xs font-medium uppercase tracking-[0.2em] text-rose-200"
+            >
+              2026
+            </p>
+            <h3 class="mt-2 text-2xl font-bold text-white">
+              <a
+                href="#project-modal"
+                data-project-id="knuckle-duster"
+                class="transition hover:opacity-70 modal-trigger-link"
+                ><span class="modal-trigger-label">Knuckle-Duster</span></a
+              >
+            </h3>
+            <p class="mt-3 text-neutral-300">
+              Vibe-coded a game in a couple of evenings based on my friend’s
+              original board game.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="project-tag">Vue</span>
+              <span class="project-tag">Elysia</span>
+              <span class="project-tag">WebSockets</span>
+            </div>
           </article>
 
           <article class="reveal" style="--reveal-delay: 200ms">
@@ -133,7 +169,7 @@
                 href="#project-modal"
                 data-project-id="nlk-term"
                 class="transition hover:opacity-70 modal-trigger-link"
-                ><span class="modal-trigger-label">nlk-term</span></a
+                ><span class="modal-trigger-label">Nlk-term</span></a
               >
             </h3>
             <p class="mt-2 text-neutral-300">
@@ -222,11 +258,11 @@
 
           <div id="project-modal-stack" class="flex flex-wrap gap-2 mt-5"></div>
 
-          <figure class="mt-5">
+          <figure id="project-modal-figure" class="mt-5">
             <img id="project-modal-image" src="" alt="" class="modal-image" />
           </figure>
 
-          <div class="mt-5">
+          <div id="project-modal-links" class="mt-5">
             <a
               id="project-modal-github"
               href="#"
@@ -347,10 +383,11 @@
           title: "nlk-term",
           description:
             "Built in one evening as an experiment. The goal was to stop juggling multiple terminal windows for different projects: keep projects in a sidebar, give each project its own tabs, and keep a Git panel on the right.",
-          stack: ["Tauri", "Vue", "Tailwind"],
+          stack: ["Vue", "Tauri", "Tailwind"],
           imageSrc: "./nlk-term-screenshot.png",
           imageAlt: "nlk-term screenshot",
           githubUrl: "https://github.com/nanolookc/nlk-term",
+          linkLabel: "Open on GitHub",
         },
         "transport-map": {
           title: "Transport Map",
@@ -360,6 +397,17 @@
           imageSrc: "./transport-map-screenshot.webp",
           imageAlt: "Transport Map screenshot",
           githubUrl: "https://github.com/nanolookc/transport-map",
+          linkLabel: "Open on GitHub",
+        },
+        "knuckle-duster": {
+          title: "KNUCKLE-DUSTER",
+          description:
+            "Vibe-coded a game in a couple of evenings based on my friend’s original board game.",
+          stack: ["Vue", "Elysia", "WebSockets"],
+          imageSrc: "./bones.png",
+          imageAlt: "KNUCKLE-DUSTER screenshot",
+          githubUrl: "https://bones.hrebeni.uk",
+          linkLabel: "Open project",
         },
       };
 
@@ -372,7 +420,9 @@
         "project-modal-description",
       );
       const modalStack = document.getElementById("project-modal-stack");
+      const modalFigure = document.getElementById("project-modal-figure");
       const modalImage = document.getElementById("project-modal-image");
+      const modalLinks = document.getElementById("project-modal-links");
       const modalGithub = document.getElementById("project-modal-github");
       let lastFocusedTrigger = null;
       let modalImageRequestId = 0;
@@ -403,26 +453,41 @@
 
           modalTitle.textContent = project.title;
           modalDescription.textContent = project.description;
-          modalGithub.href = project.githubUrl;
+          if (project.githubUrl) {
+            modalLinks?.classList.remove("hidden");
+            modalGithub.href = project.githubUrl;
+            modalGithub.textContent = project.linkLabel || "Open link";
+          } else {
+            modalLinks?.classList.add("hidden");
+            modalGithub.removeAttribute("href");
+          }
 
-          modalImageRequestId += 1;
-          const requestId = modalImageRequestId;
-          modalImage.classList.add("is-loading");
-          modalImage.alt = project.imageAlt;
+          if (project.imageSrc) {
+            modalFigure?.classList.remove("hidden");
+            modalImageRequestId += 1;
+            const requestId = modalImageRequestId;
+            modalImage.classList.add("is-loading");
+            modalImage.alt = project.imageAlt;
 
-          const preloadedImage = new Image();
-          preloadedImage.decoding = "async";
-          preloadedImage.onload = () => {
-            if (requestId !== modalImageRequestId) return;
-            modalImage.src = project.imageSrc;
+            const preloadedImage = new Image();
+            preloadedImage.decoding = "async";
+            preloadedImage.onload = () => {
+              if (requestId !== modalImageRequestId) return;
+              modalImage.src = project.imageSrc;
+              modalImage.classList.remove("is-loading");
+            };
+            preloadedImage.onerror = () => {
+              if (requestId !== modalImageRequestId) return;
+              modalImage.src = project.imageSrc;
+              modalImage.classList.remove("is-loading");
+            };
+            preloadedImage.src = project.imageSrc;
+          } else {
+            modalFigure?.classList.add("hidden");
             modalImage.classList.remove("is-loading");
-          };
-          preloadedImage.onerror = () => {
-            if (requestId !== modalImageRequestId) return;
-            modalImage.src = project.imageSrc;
-            modalImage.classList.remove("is-loading");
-          };
-          preloadedImage.src = project.imageSrc;
+            modalImage.alt = "";
+            modalImage.src = "";
+          }
 
           modalStack.innerHTML = "";
           project.stack.forEach((item) => {
