@@ -17,19 +17,22 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" crossorigin href="/assets/index-DoF5OSCd.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BWbBvQYN.css">
   </head>
   <body>
     <main class="px-5 py-10 mx-auto max-w-4xl md:px-10 md:py-16">
       <header class="mb-14 reveal" style="--reveal-delay: 0ms">
         <div class="mt-5">
-          <div class="flex gap-6 justify-between items-start">
+          <div class="flex gap-6 justify-between items-center">
             <div class="min-w-0">
               <h1
                 class="text-3xl font-bold leading-tight text-white md:text-5xl"
               >
                 Dima Hrebeniuk
               </h1>
+                <p class="mt-2 hero-line accent-text">
+                I’m a full-cycle developer focused on strong UX.
+              </p>
             </div>
             <img
               src="/assets/dima-CW4yel3-.jpg"
@@ -43,9 +46,6 @@
             <div
               class="mt-3 space-y-2 max-w-2xl text-base hero-copy md:text-lg"
             >
-              <p class="mb-4 hero-line accent-text">
-                I’m a full-cycle developer focused on strong UX.
-              </p>
               <p class="hero-line">
                 I build products I’d genuinely want to use every day: clear
                 interfaces that just feel right.
@@ -66,7 +66,7 @@
 
       <section class="reveal" style="--reveal-delay: 80ms">
         <h2 class="text-2xl font-bold text-white md:text-3xl">Projects</h2>
-        <div class="mt-8 space-y-10">
+        <div class="mt-6 space-y-6">
           <article class="reveal" style="--reveal-delay: 120ms">
             <p
               class="text-xs font-medium uppercase tracking-[0.2em] text-orange-200"
@@ -81,8 +81,7 @@
               >
             </h3>
             <p class="mt-3 text-neutral-300">
-              AI-based analysis and scoring of projects and tweets, plus
-              selected work in development and design.
+              Built AI-powered analysis and scoring of projects and tweets, plus some development and design work.
             </p>
           </article>
 
@@ -126,7 +125,7 @@
 
       <section class="mt-14 reveal" style="--reveal-delay: 240ms">
         <h2 class="text-2xl font-bold text-white md:text-3xl">Other</h2>
-        <div class="mt-8 space-y-5">
+        <div class="mt-6 space-y-6">
           <article class="reveal" style="--reveal-delay: 300ms">
             <h3 class="text-2xl font-bold text-white">
               <a
@@ -349,6 +348,7 @@
       const modalImage = document.getElementById("project-modal-image");
       const modalGithub = document.getElementById("project-modal-github");
       let lastFocusedTrigger = null;
+      let modalImageRequestId = 0;
 
       const closeDialog = (dialog) => {
         if (!dialog || !dialog.open) return;
@@ -375,9 +375,26 @@
 
           modalTitle.textContent = project.title;
           modalDescription.textContent = project.description;
-          modalImage.src = project.imageSrc;
-          modalImage.alt = project.imageAlt;
           modalGithub.href = project.githubUrl;
+
+          modalImageRequestId += 1;
+          const requestId = modalImageRequestId;
+          modalImage.classList.add("is-loading");
+          modalImage.alt = project.imageAlt;
+
+          const preloadedImage = new Image();
+          preloadedImage.decoding = "async";
+          preloadedImage.onload = () => {
+            if (requestId !== modalImageRequestId) return;
+            modalImage.src = project.imageSrc;
+            modalImage.classList.remove("is-loading");
+          };
+          preloadedImage.onerror = () => {
+            if (requestId !== modalImageRequestId) return;
+            modalImage.src = project.imageSrc;
+            modalImage.classList.remove("is-loading");
+          };
+          preloadedImage.src = project.imageSrc;
 
           modalStack.innerHTML = "";
           project.stack.forEach((item) => {
