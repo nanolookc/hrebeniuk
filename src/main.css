@@ -1,20 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-body {
-    background: #15171F;
-    color: white;
+@theme {
+    --font-sans: "Space Grotesk", "Segoe UI", sans-serif;
 }
 
-.description {
-    font-weight: 500;
+@layer base {
+    :root {
+        color-scheme: dark;
+    }
+
+    body {
+        @apply m-0 antialiased bg-neutral-950 text-neutral-100;
+    }
 }
 
-.header {
-    font-weight: 700;
+@layer components {
+    .reveal {
+        --reveal-delay: 0ms;
+        animation: page-unblur 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        animation-delay: var(--reveal-delay);
+    }
+
+    .hero-copy {
+        color: rgb(212 212 212 / 0.8);
+    }
+
+    .hero-line {
+        color: rgb(212 212 212 / 0.8);
+        transition: color 220ms ease;
+    }
+
+    .hero-line:hover {
+        color: rgb(212 212 212 / 1);
+    }
+
+
+    .accent-text {
+        color: rgb(255, 255, 255);
+    }
 }
 
-#color-text {
-    color: #7A86F2
+@keyframes page-unblur {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        animation: none;
+    }
+
+    .hero-line {
+        transition: none;
+    }
 }
