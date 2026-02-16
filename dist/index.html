@@ -17,7 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" crossorigin href="/assets/index-BWbBvQYN.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-COIfMFeE.css">
   </head>
   <body>
     <main class="px-5 py-10 mx-auto max-w-4xl md:px-10 md:py-16">
@@ -30,7 +30,7 @@
               >
                 Dima Hrebeniuk
               </h1>
-                <p class="mt-2 hero-line accent-text">
+              <p class="mt-2 hero-line accent-text">
                 I’m a full-cycle developer focused on strong UX.
               </p>
             </div>
@@ -81,7 +81,8 @@
               >
             </h3>
             <p class="mt-3 text-neutral-300">
-              Built AI-powered analysis and scoring of projects and tweets, plus some development and design work.
+              Built AI-powered analysis and scoring of projects and tweets, plus
+              some development and design work.
             </p>
           </article>
 
@@ -174,10 +175,20 @@
             </div>
             <div class="mt-6">
               <h2 class="text-xl font-bold text-white">Crypto</h2>
-              <p class="mt-2 break-all text-neutral-300">nanolook.eth</p>
-              <p class="mt-1 text-sm break-all text-neutral-400">
+              <button
+                type="button"
+                data-copy-value="nanolook.eth"
+                class="block mt-2 break-all text-left transition text-neutral-300 hover:text-white"
+              >
+                nanolook.eth
+              </button>
+              <button
+                type="button"
+                data-copy-value="bc1qx3hjnaqjardzj7zczxulernwdktj2laxt9puun"
+                class="block mt-1 break-all text-left transition text-neutral-300 hover:text-white"
+              >
                 bc1qx3hjnaqjardzj7zczxulernwdktj2laxt9puun
-              </p>
+              </button>
             </div>
           </div>
         </div>
@@ -189,7 +200,7 @@
         aria-labelledby="project-modal-title"
         class="project-modal"
       >
-        <div class="p-5 md:p-7">
+        <div class="p-4 md:p-7">
           <div class="flex gap-4 justify-between items-start">
             <div>
               <h3
@@ -212,12 +223,7 @@
           <div id="project-modal-stack" class="flex flex-wrap gap-2 mt-5"></div>
 
           <figure class="mt-5">
-            <img
-              id="project-modal-image"
-              src=""
-              alt=""
-              class="modal-image"
-            />
+            <img id="project-modal-image" src="" alt="" class="modal-image" />
           </figure>
 
           <div class="mt-5">
@@ -246,7 +252,7 @@
                 <i class="text-xl fa-regular fa-envelope"></i>
               </button>
               <div
-                class="absolute right-0 bottom-8 invisible z-10 p-1 w-40 rounded-lg shadow-lg opacity-0 transition bg-neutral-900 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                class="absolute left-0 bottom-full z-10 p-1 mb-2 w-40 rounded-lg shadow-lg opacity-0 invisible pointer-events-none transition bg-neutral-900 before:content-[''] before:absolute before:left-0 before:right-0 before:-bottom-2 before:h-2 group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 group-focus-within:pointer-events-auto"
               >
                 <button
                   id="copy-email-btn"
@@ -317,6 +323,25 @@
         });
       }
 
+      const copyValueButtons = document.querySelectorAll("[data-copy-value]");
+      copyValueButtons.forEach((button) => {
+        button.addEventListener("click", async () => {
+          const originalText = button.textContent || "";
+          const copyValue = button.getAttribute("data-copy-value");
+          if (!copyValue) return;
+
+          try {
+            await navigator.clipboard.writeText(copyValue);
+            button.textContent = "Copied";
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 1000);
+          } catch {
+            window.prompt("Copy value:", copyValue);
+          }
+        });
+      });
+
       const projectDetails = {
         "nlk-term": {
           title: "nlk-term",
@@ -343,7 +368,9 @@
       const dialogs = document.querySelectorAll("dialog[data-modal]");
       const projectModal = document.getElementById("project-modal");
       const modalTitle = document.getElementById("project-modal-title");
-      const modalDescription = document.getElementById("project-modal-description");
+      const modalDescription = document.getElementById(
+        "project-modal-description",
+      );
       const modalStack = document.getElementById("project-modal-stack");
       const modalImage = document.getElementById("project-modal-image");
       const modalGithub = document.getElementById("project-modal-github");
@@ -359,7 +386,8 @@
         trigger.addEventListener("click", (event) => {
           event.preventDefault();
           const projectId = trigger.getAttribute("data-project-id");
-          if (!projectId || !(projectModal instanceof HTMLDialogElement)) return;
+          if (!projectId || !(projectModal instanceof HTMLDialogElement))
+            return;
           const project = projectDetails[projectId];
           if (!project) return;
 
