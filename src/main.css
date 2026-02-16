@@ -30,6 +30,13 @@
         transition: color 220ms ease;
     }
 
+    a {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 5px;
+        text-decoration-color: color-mix(in srgb, currentColor, transparent 75%);
+    }
+
     .hero-line:hover {
         color: rgb(212 212 212 / 1);
     }
