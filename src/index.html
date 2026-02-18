@@ -218,6 +218,19 @@
               Fork of Next Up — show your current event in GNOME bar.
             </p>
           </article>
+          <article class="reveal" style="--reveal-delay: 360ms">
+            <h3 class="text-2xl font-bold text-white">
+              <a
+                href="#project-modal"
+                data-project-id="codex-room"
+                class="transition hover:opacity-70 modal-trigger-link"
+                ><span class="modal-trigger-label">Codex Room</span></a
+              >
+            </h3>
+            <p class="mt-2 text-neutral-300">
+              Real-time collaborative Codex session with shared prompt editing.
+            </p>
+          </article>
           <div class="pt-8 mt-8 border-t border-white/10">
             <div>
               <h2 class="text-xl font-bold text-white">Have an idea?</h2>
@@ -425,6 +438,16 @@
           imageAlt: "KNUCKLE-DUSTER screenshot",
           githubUrl: "https://bones.hrebeni.uk",
           linkLabel: "Open project",
+        },
+        "codex-room": {
+          title: "Codex Room",
+          description:
+            "An early experiment to collaborate in one Codex session: watch output in real time while editing prompts together, like Google Docs.",
+          stack: ["Vue", "Elysia", "TypeScript"],
+          imageSrc: "./codex-room-screenshot.png",
+          imageAlt: "Codex Room screenshot",
+          githubUrl: "https://github.com/nanolookc/codex-room",
+          linkLabel: "Open on GitHub",
         },
       };
 
