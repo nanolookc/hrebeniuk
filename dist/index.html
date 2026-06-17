@@ -22,7 +22,7 @@
       src="https://umami.hrebeni.uk/umami"
       data-website-id="3a46c34f-e5a6-4c96-8eb1-570fbc78b36a"
     ></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CxnzaZjk.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DKf6KGGq.css">
   </head>
   <body>
     <main class="px-5 py-10 mx-auto max-w-4xl md:px-10 md:py-16">
@@ -79,15 +79,23 @@
               2020 - now
             </p>
             <h3 class="mt-2 text-2xl font-bold text-white">
-              <a
-                href="https://moni.ai"
-                class="transition-opacity hover:opacity-70"
-                >Moni and Moni Talks</a
-              >
+              <span class="flex flex-wrap gap-x-3 gap-y-1 items-center">
+                <a
+                  href="https://moni.ai"
+                  class="transition-opacity hover:opacity-70"
+                  >Moni</a
+                >
+                <a
+                  href="https://research.moni.ai"
+                  class="transition-opacity hover:opacity-70"
+                  >Moni Research</a
+                >
+              </span>
             </h3>
             <p class="mt-3 text-neutral-300">
-              Built AI-powered analysis and scoring of projects and tweets, plus
-              some development and design work.
+              Built AI-powered analysis and scoring of projects (60k+ monthly)
+              and tweets (210k+ monthly), a dynamic feed on the website, and
+              real-time analysis of events on Twitter.
             </p>
             <div class="flex flex-wrap gap-2 mt-3">
               <span class="project-tag">AI</span>
@@ -110,7 +118,8 @@
               >
             </h3>
             <p class="mt-3 text-neutral-300">
-              My own little startup. It's an AI tool for creating video timestamps in seconds.
+              My own little startup for creating video timestamps in seconds.
+              Entirely my project, where I coded and designed everything.
             </p>
             <div class="flex flex-wrap gap-2 mt-3">
               <span class="project-tag">Vue</span>
@@ -159,7 +168,8 @@
               >
             </h3>
             <p class="mt-3 text-neutral-300">
-              Organized events focused on liberty and policy.
+              Organized 200+ attendee events with Students for Liberty,
+              promoting freedom and liberty-oriented policy in Ukraine.
             </p>
           </article>
         </div>
@@ -179,6 +189,19 @@
             </h3>
             <p class="mt-2 text-neutral-300">
               Minimal terminal with agents in mind.
+            </p>
+          </article>
+          <article class="reveal" style="--reveal-delay: 360ms">
+            <h3 class="text-2xl font-bold text-white">
+              <a
+                href="#project-modal"
+                data-project-id="codex-room"
+                class="transition hover:opacity-70 modal-trigger-link"
+                ><span class="modal-trigger-label">Codex Room</span></a
+              >
+            </h3>
+            <p class="mt-2 text-neutral-300">
+              Real-time collaborative Codex session with shared prompt editing.
             </p>
           </article>
           <article class="reveal" style="--reveal-delay: 320ms">
@@ -216,19 +239,6 @@
             </h3>
             <p class="mt-2 text-neutral-300">
               Fork of Next Up — show your current event in GNOME bar.
-            </p>
-          </article>
-          <article class="reveal" style="--reveal-delay: 360ms">
-            <h3 class="text-2xl font-bold text-white">
-              <a
-                href="#project-modal"
-                data-project-id="codex-room"
-                class="transition hover:opacity-70 modal-trigger-link"
-                ><span class="modal-trigger-label">Codex Room</span></a
-              >
-            </h3>
-            <p class="mt-2 text-neutral-300">
-              Real-time collaborative Codex session with shared prompt editing.
             </p>
           </article>
           <div class="pt-8 mt-8 border-t border-white/10">
@@ -419,6 +429,16 @@
           githubUrl: "https://github.com/nanolookc/nlk-term",
           linkLabel: "Open on GitHub",
         },
+        "codex-room": {
+          title: "Codex Room",
+          description:
+            "An early experiment to collaborate in one Codex session: watch output in real time while editing prompts together, like Google Docs.",
+          stack: ["Vue", "Elysia", "TypeScript"],
+          imageSrc: "./codex-room-screenshot.png",
+          imageAlt: "Codex Room screenshot",
+          githubUrl: "https://github.com/nanolookc/codex-room",
+          linkLabel: "Open on GitHub",
+        },
         "transport-map": {
           title: "Transport Map",
           description:
@@ -438,16 +458,6 @@
           imageAlt: "KNUCKLE-DUSTER screenshot",
           githubUrl: "https://bones.hrebeni.uk",
           linkLabel: "Open project",
-        },
-        "codex-room": {
-          title: "Codex Room",
-          description:
-            "An early experiment to collaborate in one Codex session: watch output in real time while editing prompts together, like Google Docs.",
-          stack: ["Vue", "Elysia", "TypeScript"],
-          imageSrc: "./codex-room-screenshot.png",
-          imageAlt: "Codex Room screenshot",
-          githubUrl: "https://github.com/nanolookc/codex-room",
-          linkLabel: "Open on GitHub",
         },
       };
 
