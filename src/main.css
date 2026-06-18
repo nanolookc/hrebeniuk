@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Space Grotesk", "Segoe UI", sans-serif;
+    --font-sans: "Geist", "Segoe UI", sans-serif;
 }
 
 @layer base {
