@@ -22,6 +22,15 @@
 }
 
 @layer components {
+    .unblur-in {
+        animation: unblur-in 700ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    @keyframes unblur-in {
+        from { opacity: 0; filter: blur(12px); transform: translateY(12px); }
+        to { opacity: 1; filter: blur(0); transform: translateY(0); }
+    }
+
     .hero-layout {
         display: grid;
         grid-template-columns: minmax(0, 1fr) 5rem;
@@ -436,6 +445,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .unblur-in { animation: none; }
     .project-preview-image,
     .modal-image {
         transition: none;
